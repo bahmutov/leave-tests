@@ -18,6 +18,21 @@ npm install --save leave-tests
 
 ## Use
 
+Imagine you have Mocha test suites, and you know the full titles of the tests you would
+like to leave for testing
+
+```js
+const Mocha = require('mocha')
+const leaveTests = require('leave-tests')
+const mocha = new Mocha()
+mocha.addFile('./spec.js')
+leaveTests(['test a', 'test b'])(mocha.suite)
+// only two tests are left in the suite, including children
+```
+
+This is useful when running the failing tests first, for example in 
+[focha](https://github.com/bahmutov/focha)
+
 ### Small print
 
 Author: Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt; &copy; 2017

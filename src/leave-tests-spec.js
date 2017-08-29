@@ -2,9 +2,29 @@
 
 /* eslint-env mocha */
 const leaveTests = require('.')
+const snapshot = require('snap-shot-it')
 
 describe('leave-tests', () => {
-  it('write this test', () => {
-    console.assert(leaveTests, 'should export something')
+  const suite = {
+    tests: [
+      {
+        value: 'a',
+        fullTitle () {
+          return 'a'
+        }
+      },
+      {
+        value: 'b',
+        fullTitle () {
+          return 'b'
+        }
+      }
+    ],
+    suites: []
+  }
+
+  it('removes tests by full title', () => {
+    const titles = ['b']
+    snapshot(leaveTests(titles)(suite))
   })
 })
